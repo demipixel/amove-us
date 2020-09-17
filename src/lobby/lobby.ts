@@ -213,12 +213,19 @@ export class Lobby {
   }
 
   async start() {
-    console.log('Starting lobby in ' + this.category.guild.name);
     this.members = this.lobbyCh.members.array();
     this.imposterUserIds = [];
     this.aliveUserIds = this.members.map((member) => member.user.id);
     this.gameInProgress = true;
     this.waitingForImposters = true;
+
+    console.log(
+      'Starting lobby in ' +
+        this.category.guild.name +
+        ' (' +
+        this.members.length +
+        ')',
+    );
 
     await this.saveToRedis('started-at', Date.now());
     await this.saveToRedis(
