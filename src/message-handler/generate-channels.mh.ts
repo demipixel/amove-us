@@ -12,6 +12,7 @@ import {
   sendImposterPanelEmbed,
 } from '../embeds/imposter-panel.embed';
 import { sendSuccessEmbed } from '../embeds/success.embed';
+import state from '../state';
 import { respondInvalidFormat } from '../util/command.util';
 
 const FAIL_TITLE = 'Could not generate';
@@ -62,6 +63,8 @@ export const GenerateChannels: MessageHandler = async (msg) => {
   }
 
   await generateChannels(msg.client, category);
+  // Generate lobby
+  await state.getLobbyForGuild(msg.guild, category);
 
   await sendSuccessEmbed(msg, {
     title: 'Generate 12 Channels',
