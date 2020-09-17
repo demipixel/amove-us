@@ -67,6 +67,8 @@ export const GenerateChannels: MessageHandler = async (msg) => {
     title: 'Generate 12 Channels',
   });
 
+  console.log('Generated channels in ' + msg.guild.name);
+
   return true;
 };
 

@@ -100,7 +100,7 @@ export class Lobby {
     });
 
     if (this.gameInProgress) {
-      console.log('Loaded game in progress for ' + this.category.guild.id);
+      console.log('Loaded game in progress for ' + this.category.guild.name);
     }
   }
 
@@ -214,7 +214,7 @@ export class Lobby {
   }
 
   async start() {
-    console.log('Starting lobby in ' + this.category.guild.id);
+    console.log('Starting lobby in ' + this.category.guild.name);
     this.members = this.lobbyCh.members.array();
     this.imposterUserIds = [];
     this.aliveUserIds = this.members.map((member) => member.user.id);

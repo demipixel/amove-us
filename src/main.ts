@@ -48,6 +48,12 @@ client.on('ready', async () => {
   }
 });
 
+client.on('guildCreate', (guild) => {
+  console.log(
+    'Joing "' + guild.name + '" (Owner: ' + guild.owner?.user.tag + ')',
+  );
+});
+
 client.on('message', (msg) => {
   // console.log(msg.author.username + ': ' + msg.content);
   if (msg.author.id === client.user?.id) return;
