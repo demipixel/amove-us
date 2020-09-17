@@ -26,11 +26,12 @@ export const GenerateChannels: MessageHandler = async (msg) => {
     return;
   }
 
-  if (msg.guild.owner?.id !== msg.member.id) {
+  if (!msg.member.hasPermission('MANAGE_CHANNELS')) {
     await sendFailEmbed(msg.author, {
       title: FAIL_TITLE,
-      description: 'Only the server owner can do this!',
+      description: 'Only users with "manage channels" can do this!',
     });
+    return;
   }
 
   const match = msg.content.match(/^!amoveus generate ?(delete)?$/);
