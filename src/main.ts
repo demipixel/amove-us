@@ -19,7 +19,7 @@ client.on('ready', async () => {
 
   for (const guild of client.guilds.cache.array()) {
     console.log(
-      'In "' + guild.name + '" (Owner: ' + guild.owner?.user.tag + ')',
+      `In ${guild.name} (Owner: ${guild.owner?.user.tag}, Members: ${guild.memberCount})`,
     );
     for (const channel of guild.channels.cache.array()) {
       if (
@@ -35,7 +35,7 @@ client.on('ready', async () => {
 
 client.on('guildCreate', (guild) => {
   console.log(
-    'Joing "' + guild.name + '" (Owner: ' + guild.owner?.user.tag + ')',
+    `Joining ${guild.name} (Owner: ${guild.owner?.user.tag}, Members: ${guild.memberCount})`,
   );
 });
 
