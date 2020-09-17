@@ -5,7 +5,7 @@ import { sendHowToPlayEmbed } from '../embeds/how-to-play.embed';
 import { sendSuccessEmbed } from '../embeds/success.embed';
 
 export const HelpMessageHandler: MessageHandler = async (msg) => {
-  if (msg.content.trim() !== '!amoveus servers') {
+  if (msg.content.trim() !== '!amoveus') {
     return false;
   }
 

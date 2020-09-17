@@ -4,7 +4,7 @@ import { MessageHandler } from '.';
 import { sendHowToPlayEmbed } from '../embeds/how-to-play.embed';
 
 export const ServerCountHandler: MessageHandler = async (msg) => {
-  if (msg.content.trim() !== '!amoveus') {
+  if (msg.content.trim() !== '!amoveus servers') {
     return false;
   }
 

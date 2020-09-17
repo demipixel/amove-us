@@ -33,6 +33,9 @@ client.on('ready', async () => {
   // state.setChannels(shhChannels, lobbyChannels, mainGuild);
 
   for (const guild of client.guilds.cache.array()) {
+    console.log(
+      'In "' + guild.name + '" (Owner: ' + guild.owner?.user.tag + ')',
+    );
     for (const channel of guild.channels.cache.array()) {
       if (
         channel.type === 'category' &&
