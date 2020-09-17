@@ -83,7 +83,7 @@ async function generateChannels(
     permissionOverwrites: [
       {
         id: client.user!,
-        allow: ['SEND_MESSAGES'],
+        allow: ['SEND_MESSAGES', 'MANAGE_MESSAGES'],
       },
       {
         id: guild.roles.everyone,
