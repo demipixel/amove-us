@@ -18,7 +18,7 @@ export const HelpMessageHandler: MessageHandler = async (msg) => {
     'Amove Us',
     `Automagically move users between channels, let imposters talk to each other, and let ghosts talk to each other!
     Use \`!amoveus generate\` to get started.
-    
+
     Need help? Found a bug? Join our server! https://discord.gg/WsR8T7v
     Created by DemiPixel#0001`,
   );

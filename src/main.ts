@@ -32,7 +32,17 @@ client.on('ready', async () => {
 
   // state.setChannels(shhChannels, lobbyChannels, mainGuild);
 
-  // client.guilds.fetch
+  for (const guild of client.guilds.cache.array()) {
+    for (const channel of guild.channels.cache.array()) {
+      if (
+        channel.type === 'category' &&
+        channel.name.toLowerCase() === 'amove us'
+      ) {
+        await state.getLobbyForGuild(guild, channel as Discord.CategoryChannel);
+        break;
+      }
+    }
+  }
 });
 
 client.on('message', (msg) => {
