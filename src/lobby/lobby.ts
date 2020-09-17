@@ -112,7 +112,7 @@ export class Lobby {
       ).size;
 
       if (
-        totalInVoice >= 1 &&
+        totalInVoice >= 2 &&
         mutedInVoice / totalInVoice >= SHH_STARTED_THRESHOLD
       ) {
         this.shhInProgress = true;
