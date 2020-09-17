@@ -15,22 +15,7 @@ const client = new Discord.Client();
 client.on('ready', async () => {
   console.log(`Logged in as ${client.user?.tag}`);
 
-  // const voiceChannels = mainGuild.channels.cache.filter(
-  //   (ch) => ch.type === 'voice',
-  // );
-
-  // const shhChannels = voiceChannels
-  //   .filter((ch) => ch.name === 'SHHHHHHH!')
-  //   .array() as Discord.VoiceChannel[];
-  // const lobbyChannels = voiceChannels
-  //   .filter(
-  //     (ch) =>
-  //       !shhChannelIds.includes(ch.id) &&
-  //       !['Waiting Room', 'AFK'].includes(ch.name),
-  //   )
-  //   .array() as Discord.VoiceChannel[];
-
-  // state.setChannels(shhChannels, lobbyChannels, mainGuild);
+  client.user?.setActivity('!amoveus');
 
   for (const guild of client.guilds.cache.array()) {
     console.log(

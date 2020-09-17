@@ -171,26 +171,25 @@ export class Lobby {
     }
     const expectedChannel = this.getExpectedChannelForMember(member);
     const expectedServerMute = this.getExpectedServerMuteForMemember(member);
-    if (
-      member.voice.channelID &&
-      member.voice.channelID !== expectedChannel.id
-    ) {
-      await member.voice
-        .setChannel(expectedChannel)
-        .catch((err) => console.log('Error moving member', err));
-    }
-    if (member.voice.serverMute !== expectedServerMute) {
-      await member.voice
-        .setMute(expectedServerMute)
-        .catch((err) =>
-          console.log(
-            'Could not set mute for ' +
-              member.displayName +
-              ' to ' +
-              expectedServerMute,
-            err,
-          ),
-        );
+    if (member.voice.channelID) {
+      if (member.voice.channelID !== expectedChannel.id) {
+        await member.voice
+          .setChannel(expectedChannel)
+          .catch((err) => console.log('Error moving member', err));
+      }
+      if (member.voice.serverMute !== expectedServerMute) {
+        await member.voice
+          .setMute(expectedServerMute)
+          .catch((err) =>
+            console.log(
+              'Could not set mute for ' +
+                member.displayName +
+                ' to ' +
+                expectedServerMute,
+              err,
+            ),
+          );
+      }
     }
   }
 
