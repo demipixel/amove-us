@@ -59,6 +59,8 @@ export const GenerateChannels: MessageHandler = async (msg) => {
     return;
   }
 
+  await state.deleteLobbyForGuild(msg.guild);
+
   for (const channel of category.children.array()) {
     await channel.delete('Used !amoveus generate.delete command');
   }

@@ -34,6 +34,14 @@ class State {
   //   return null;
   // }
 
+  async deleteLobbyForGuild(guild: Discord.Guild) {
+    const lobby = this.lobbies.find((l) => l.category.guild.id === guild.id);
+    if (lobby) {
+      await lobby.finishGame();
+    }
+    this.lobbies = this.lobbies.filter((l) => l.category.guild.id !== guild.id);
+  }
+
   async getLobbyForGuild(
     guild: Discord.Guild,
     category: Discord.CategoryChannel | null = null,
