@@ -159,7 +159,7 @@ export class Lobby {
   }
 
   async updateMemberToExpectedVoiceState(member: Discord.GuildMember) {
-    if (!this.hasMember(member)) {
+    if (!this.hasMember(member) && this.gameInProgress) {
       if (this.members.length < 10) {
         this.members.push(member);
       } else {
