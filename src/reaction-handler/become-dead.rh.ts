@@ -1,6 +1,6 @@
 import { ReactionHandler } from '.';
 import { DEAD_EMOJI } from '../embeds/dead-panel.embed';
-import { GAME_OVER_EMOJI } from '../embeds/game-over.embed';
+import { sendFailEmbed } from '../embeds/fail.embed';
 
 export const BecomeDeadReactionHandler: ReactionHandler = async (
   reaction,
@@ -20,5 +20,11 @@ export const BecomeDeadReactionHandler: ReactionHandler = async (
     return;
   }
 
-  await lobby.toggleDead(member);
+  const err = await lobby.toggleDead(member);
+  if (err) {
+    await sendFailEmbed(user, {
+      title: 'Cannot toggle dead',
+      description: err,
+    });
+  }
 };

@@ -1,4 +1,5 @@
 import * as Discord from 'discord.js';
+import { GAME_OVER_EMOJI } from '../embeds/game-over.embed';
 import { Redis } from '../redis';
 
 const SHH_STARTED_THRESHOLD = 0.6;
@@ -166,6 +167,13 @@ export class Lobby {
         await member.voice
           .kick()
           .catch((err) => console.log('Error kicking member', err));
+        await member
+          .send(
+            `This game already has 10 users! If the game is complete, press the ${GAME_OVER_EMOJI} in #panel.`,
+          )
+          .catch((err) =>
+            console.log('Error warning user about max users', err),
+          );
         return;
       }
     }
@@ -259,7 +267,7 @@ export class Lobby {
 
   async makeImposter(member: Discord.GuildMember) {
     if (!this.waitingForImposters) {
-      return 'No game has started yet.';
+      return 'No game has started yet! Everybody should get into a voice channel and mute to start.';
     } else if (!this.members.includes(member)) {
       return 'You are not currently participating in this game!';
     } else if (this.imposterUserIds.includes(member.user.id)) {
@@ -274,6 +282,10 @@ export class Lobby {
   }
 
   async toggleDead(member: Discord.GuildMember) {
+    if (!this.gameInProgress) {
+      return 'No game has started yet! Everybody should get into a voice channel and mute to start.';
+    }
+
     const isAlive = this.aliveUserIds.includes(member.user.id);
     if (isAlive) {
       this.aliveUserIds = this.aliveUserIds.filter(
