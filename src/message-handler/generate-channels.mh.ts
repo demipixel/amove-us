@@ -127,10 +127,10 @@ async function generateChannels(
     howToPlay,
     'The Game',
     `
-    1. **MUTE when a round starts** - Everybody will be moved to separate, hidden channels.
+    1. **MUTE when a round starts** - Once 70% of users in the voice chat mute, everybody will be moved to separate, hidden channels.
     2. During the first round of the game, **if you're imposter, click ${IMPOSTER_EMOJI} in ${panel} ** - You can now unmute and talk to your partner!
     3. **If you die, click the ${DEAD_EMOJI} in the panel (and unmute yourself)** - You'll be moved to the lobby to chat with other ghosts
-    4. **UNMUTE when a discussion time starts** - Everybody will be moved back to the lobby and ghosts will be server muted
+    4. **UNMUTE when a discussion time starts** - Once 40% of alive users (or less) are muted, everybody will be moved back to the lobby and ghosts will be server muted
     5. **Click ${GAME_OVER_EMOJI} when the game is over** - Ghosts will be unmuted and imposters will be reset`.trim(),
   );
   await sendHowToPlayEmbed(
