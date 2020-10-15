@@ -59,13 +59,46 @@ export const GenerateChannels: MessageHandler = async (msg) => {
     return;
   }
 
+  await handleGenerateChannels(msg, category);
+
+  return true;
+};
+
+async function handleGenerateChannels(
+  msg: Discord.Message,
+  category: Discord.CategoryChannel,
+) {
+  if (!msg.guild || !msg.member) {
+    return;
+  }
+
   await state.deleteLobbyForGuild(msg.guild);
 
   for (const channel of category.children.array()) {
-    await channel.delete('Used !amoveus generate.delete command');
+    try {
+      await channel.delete('Used !amoveus generate delete command');
+    } catch (e) {
+      console.error(e);
+      await sendFailEmbed(msg, {
+        title: FAIL_TITLE,
+        description:
+          'There was an issue trying to delete the channels. Make sure I have permissions to delete channels!',
+      });
+      return;
+    }
   }
 
-  await generateChannels(msg.client, category);
+  try {
+    await generateChannels(msg.client, category);
+  } catch (e) {
+    console.error(e);
+    await sendFailEmbed(msg, {
+      title: FAIL_TITLE,
+      description:
+        'There was an issue trying to generate the channels. Make sure I have permissions to create channels!',
+    });
+    return;
+  }
   // Generate lobby
   await state.getLobbyForGuild(msg.guild, category);
 
@@ -74,9 +107,7 @@ export const GenerateChannels: MessageHandler = async (msg) => {
   });
 
   console.log('Generated channels in ' + msg.guild.name);
-
-  return true;
-};
+}
 
 async function generateChannels(
   client: Discord.Client,
