@@ -1,5 +1,5 @@
 {
-  "name": "humongus",
+  "name": "amove-us",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,7 +9,7 @@
     "start:dev": "ts-node src/main.ts",
     "lint": "tslint -p tsconfig.json -c tslint.json"
   },
-  "author": "",
+  "author": "Lucas Simon (DemiPixel)",
   "license": "ISC",
   "dependencies": {
     "discord.js": "^12.3.1",
